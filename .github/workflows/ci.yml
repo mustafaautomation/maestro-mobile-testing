@@ -8,14 +8,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install PyYAML
-        run: pip install pyyaml
       - name: Validate YAML syntax
         run: |
-          echo "Validating Maestro flow files..."
-          find flows -name "*.yaml" -exec sh -c '
-            python3 -c "import yaml; yaml.safe_load(open(\"$1\"))" 2>&1 && echo "OK: $1" || (echo "INVALID: $1" && exit 1)
-          ' _ {} \;
-          echo "All flows valid."
-      - name: Count flows
-        run: echo "Total flows: $(find flows -name '*.yaml' | wc -l | tr -d ' ')"
+          pip install pyyaml -q
+          python3 -c "
+          import yaml, glob, sys
+          errors = 0
+          for f in glob.glob('flows/**/*.yaml', recursive=True):
+              try:
+                  list(yaml.safe_load_all(open(f)))
+                  print(f'OK: {f}')
+              except Exception as e:
+                  print(f'INVALID: {f} - {e}')
+                  errors += 1
+          print(f'Validated {len(glob.glob(\"flows/**/*.yaml\", recursive=True))} flows')
+          sys.exit(1 if errors else 0)
+          "
