@@ -1,0 +1,18 @@
+appId: com.saucelabs.mydemoapp
+tags:
+  - regression
+  - cart
+---
+# Add to Cart — Verify adding a product to cart
+
+- launchApp
+- assertVisible: "PRODUCTS"
+
+- tapOn: "Sauce Labs Backpack"
+- tapOn: "Add To Cart"
+
+# Verify cart badge or navigate to cart
+- tapOn:
+    id: "cartBt"
+
+- assertVisible: "Sauce Labs Backpack"
