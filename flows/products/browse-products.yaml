@@ -1,0 +1,21 @@
+appId: com.saucelabs.mydemoapp
+tags:
+  - smoke
+  - products
+---
+# Browse Products — Verify product catalog is visible
+
+- launchApp
+
+- assertVisible: "PRODUCTS"
+
+# Verify products are displayed
+- assertVisible: "Sauce Labs Backpack"
+- assertVisible: "Sauce Labs Bike Light"
+
+# Scroll to see more
+- scroll
+
+- assertVisible:
+    text: ".*\\$.*"
+    enabled: true

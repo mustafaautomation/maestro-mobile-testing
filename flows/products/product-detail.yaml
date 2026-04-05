@@ -1,0 +1,19 @@
+appId: com.saucelabs.mydemoapp
+tags:
+  - regression
+  - products
+---
+# Product Detail — Verify tapping a product shows details
+
+- launchApp
+- assertVisible: "PRODUCTS"
+
+- tapOn: "Sauce Labs Backpack"
+
+# Verify detail page
+- assertVisible: "Sauce Labs Backpack"
+- assertVisible: "Add To Cart"
+
+# Go back
+- back
+- assertVisible: "PRODUCTS"

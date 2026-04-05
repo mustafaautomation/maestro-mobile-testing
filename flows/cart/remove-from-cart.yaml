@@ -1,0 +1,21 @@
+appId: com.saucelabs.mydemoapp
+tags:
+  - regression
+  - cart
+---
+# Remove from Cart — Verify removing a product
+
+- launchApp
+
+- tapOn: "Sauce Labs Backpack"
+- tapOn: "Add To Cart"
+
+- tapOn:
+    id: "cartBt"
+
+- assertVisible: "Sauce Labs Backpack"
+
+# Remove item
+- tapOn: "Remove Item"
+
+- assertVisible: "No Items"
