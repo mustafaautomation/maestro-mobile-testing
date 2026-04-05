@@ -1,0 +1,23 @@
+appId: com.saucelabs.mydemoapp
+tags:
+  - regression
+  - auth
+---
+# Invalid Login — Verify error message on wrong credentials
+
+- launchApp
+
+- tapOn: "Menu"
+- tapOn: "Log In"
+
+- tapOn:
+    id: "nameET"
+- inputText: "wrong@email.com"
+
+- tapOn:
+    id: "passwordET"
+- inputText: "wrongpass"
+
+- tapOn: "LOGIN"
+
+- assertVisible: "Provided credentials do not match"
