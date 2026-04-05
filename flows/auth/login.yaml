@@ -1,0 +1,23 @@
+appId: com.saucelabs.mydemoapp
+tags:
+  - smoke
+  - auth
+---
+# Login Flow — Verify user can log in with valid credentials
+
+- launchApp
+
+- tapOn: "Menu"
+- tapOn: "Log In"
+
+- tapOn:
+    id: "nameET"
+- inputText: "bod@example.com"
+
+- tapOn:
+    id: "passwordET"
+- inputText: "10203040"
+
+- tapOn: "LOGIN"
+
+- assertVisible: "PRODUCTS"
