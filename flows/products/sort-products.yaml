@@ -1,0 +1,44 @@
+appId: com.saucelabs.mydemoapp
+tags:
+  - regression
+  - products
+---
+# Sort Products — Verify sorting options work
+
+- launchApp
+
+# Login
+- tapOn: "Menu"
+- tapOn: "Log In"
+- tapOn:
+    id: "nameET"
+- inputText: "bod@example.com"
+- tapOn:
+    id: "passwordET"
+- inputText: "10203040"
+- tapOn: "LOGIN"
+- assertVisible: "PRODUCTS"
+
+# Test sort by name ascending
+- tapOn:
+    id: "sortBtn"
+- tapOn: "Name - Ascending"
+- assertVisible: "PRODUCTS"
+
+# Test sort by name descending
+- tapOn:
+    id: "sortBtn"
+- tapOn: "Name - Descending"
+- assertVisible: "PRODUCTS"
+
+# Test sort by price ascending
+- tapOn:
+    id: "sortBtn"
+- tapOn: "Price - Ascending"
+- assertVisible: "PRODUCTS"
+
+# Test sort by price descending
+- tapOn:
+    id: "sortBtn"
+- tapOn: "Price - Descending"
+- assertVisible: "PRODUCTS"

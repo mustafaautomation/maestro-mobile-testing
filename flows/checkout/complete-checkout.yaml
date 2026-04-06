@@ -1,0 +1,73 @@
+appId: com.saucelabs.mydemoapp
+tags:
+  - regression
+  - checkout
+  - e2e
+---
+# Complete Checkout Flow — End-to-end purchase journey
+
+- launchApp
+
+# Login first
+- tapOn: "Menu"
+- tapOn: "Log In"
+- tapOn:
+    id: "nameET"
+- inputText: "bod@example.com"
+- tapOn:
+    id: "passwordET"
+- inputText: "10203040"
+- tapOn: "LOGIN"
+- assertVisible: "PRODUCTS"
+
+# Add product to cart
+- tapOn:
+    index: 0
+- tapOn: "Add To Cart"
+- assertVisible: "1"
+
+# Go to cart
+- tapOn: "Cart"
+- assertVisible: "My Cart"
+
+# Proceed to checkout
+- tapOn: "Proceed To Checkout"
+
+# Fill shipping info
+- tapOn:
+    id: "fullNameET"
+- inputText: "Test User"
+- tapOn:
+    id: "address1ET"
+- inputText: "123 Test Street"
+- tapOn:
+    id: "cityET"
+- inputText: "Test City"
+- tapOn:
+    id: "zipET"
+- inputText: "12345"
+- tapOn:
+    id: "countryET"
+- inputText: "United States"
+
+- tapOn: "To Payment"
+
+# Payment
+- tapOn:
+    id: "paymentNameET"
+- inputText: "Test User"
+- tapOn:
+    id: "cardNumberET"
+- inputText: "4111111111111111"
+- tapOn:
+    id: "expirationDateET"
+- inputText: "12/28"
+- tapOn:
+    id: "securityCodeET"
+- inputText: "123"
+
+- tapOn: "Review Order"
+- tapOn: "Place Order"
+
+# Verify completion
+- assertVisible: "Checkout Complete"

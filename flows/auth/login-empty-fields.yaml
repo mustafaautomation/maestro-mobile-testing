@@ -1,0 +1,30 @@
+appId: com.saucelabs.mydemoapp
+tags:
+  - regression
+  - auth
+  - negative
+---
+# Login with Empty Fields — Verify validation messages
+
+- launchApp
+
+- tapOn: "Menu"
+- tapOn: "Log In"
+
+# Try login without entering anything
+- tapOn: "LOGIN"
+
+# Should show validation error
+- assertVisible:
+    text: "Enter a username"
+    optional: true
+
+# Enter only username, no password
+- tapOn:
+    id: "nameET"
+- inputText: "bod@example.com"
+- tapOn: "LOGIN"
+
+- assertVisible:
+    text: "Enter a password"
+    optional: true
